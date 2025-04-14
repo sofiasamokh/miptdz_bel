@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvaEdu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+      </style>
+      
+
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="welcome-text"><a href="/" class="text-decoration-none text-dark">Добро пожаловать в EvaEdu!</a></h1>
+
+    <nav class="mb-3">
+        <a href="/cards/" class="btn btn-outline-secondary">Карточки</a>
+        <a href="/quizzes/start/" class="btn btn-outline-secondary">Викторина</a>
+        <a href="/glossary/" class="btn btn-outline-secondary">Словарь</a>
+        <a href="/glossary/add/" class="btn btn-outline-secondary">Добавить термин</a>
+        <a href="{% url 'about' %}" class="btn btn-outline-danger float-end ms-2">О проекте</a>
+    </nav>    
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<footer class="mt-5 pt-4 border-top text-muted small">
+    <div class="container">
+        <p>
+            EvaEdu — образовательный портал стартапа <strong>EvaHealth</strong>, посвящённый женскому здоровью.  
+            Мы помогаем разобраться в гормональных циклах, менструации, беременности, контрацепции,  
+            и других темах, о которых часто не рассказывают.  
+        </p>
+        <p>
+            На портале вы можете:
+            <ul>
+                <li>Изучать материалы с помощью карточек;</li>
+                <li>Проходить викторины и тестировать знания;</li>
+                <li>Находить понятные определения в словаре терминов.</li>
+            </ul>
+            <p>Больше информации — на <a href="https://евахэлф.рф" target="_blank">евахэлф.рф</a></p>
+        </p>
+    </div>
+</footer>
+
+
+</body>
+</html>

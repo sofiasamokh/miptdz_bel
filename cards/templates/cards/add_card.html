@@ -1,0 +1,36 @@
+{# Шаблон добавления новой обучающей карточки #}
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Добавить карточку</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {# Перебираем все поля формы #}
+    {% for field in form %}
+        <div class="mb-3">
+            {# Метка поля #}
+            <label for="{{ field.id_for_label }}" class="form-label">
+                <strong>{{ field.label }}</strong>
+            </label>
+
+            {# Само поле ввода #}
+            {{ field }}
+
+            {# Вспомогательный текст (если есть) #}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+
+            {# Ошибки валидации (если есть) #}
+            {% for error in field.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {# Кнопка отправки формы #}
+    <button type="submit" class="btn btn-primary">Сохранить карточку</button>
+</form>
+{% endblock %}

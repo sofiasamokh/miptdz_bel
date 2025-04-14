@@ -1,0 +1,19 @@
+{# Словарь терминов #}
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Словарь терминов</h2>
+<p class="text-muted">
+    Мы собрали более {{ term_count }} терминов в нашем словаре и скоро это станет самой большой базой данных о женском здоровье.
+</p>
+
+<ul>
+    {% for term in terms %}
+        <li>
+            <a href="{% url 'term_detail' pk=term.pk %}">{{ term.name }}</a>: {{ term.description|truncatewords:10 }}
+        </li>
+    {% empty %}
+        <li>Термины не найдены.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

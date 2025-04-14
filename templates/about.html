@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">О проекте</h2>
+    <p>Проект <strong>EvaHealth</strong> (<a href="http://евахэлф.рф" target="_blank">евахэлф.рф</a>) — это образовательный портал и поддерживающая экосистема, направленная на улучшение женского здоровья. Мы собираем актуальные и научно подтверждённые материалы, проводим викторины, создаём словарь и даём женщинам пространство для заботы о себе.</p>
+    
+    <p>Наш портал помогает женщинам понять своё тело, адаптироваться к изменениям, связанным с циклом, гормональными перестройками, беременностью, родами и послеродовым периодом. Мы верим, что здоровье женщины — это фундамент здоровья нации и стратегический приоритет, закреплённый в документах Минздрава и указах Президента Российской Федерации.</p>
+
+    <img src="https://optim.tildacdn.com/tild6534-3232-4130-b237-653564313335/-/format/webp/__2025-04-05__135530.png" alt="О проекте Eva" class="img-fluid my-4" style="max-width: 100%; border-radius: 12px;">
+
+    <h4 class="mt-5">Обратная связь</h4>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Ваше имя</label>
+            <input type="text" class="form-control" id="name" name="name" required pattern="^[А-Яа-яЁё\s]{2,}$">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Тип запроса</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="">Выберите...</option>
+                <option value="feedback">Обратная связь</option>
+                <option value="suggestion">Предложение</option>
+                <option value="critique">Критика</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Ваше сообщение (не менее 50 символов)</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required minlength="50" pattern="^[А-Яа-яЁё0-9\s.,!?«»()-]+$"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

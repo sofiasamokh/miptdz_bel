@@ -1,0 +1,24 @@
+{# Блок викторины #}
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Викторина</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% for q in questions %}
+        <div class="mb-4">
+            <p><strong>{{ q.question }}</strong></p>
+            {% for option in q.options %}
+                <div>
+                    <input type="radio" name="q{{ q.id }}" value="{{ option }}">
+                    {{ option }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Проверить ответы</button>
+</form>
+{% endblock %}

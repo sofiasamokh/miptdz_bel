@@ -1,0 +1,32 @@
+{# Шаблон для отображения списка карточек #}
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Карточки</h2>
+
+{# Кнопка добавления новой карточки #}
+<a href="{% url 'add_card' %}" class="btn btn-primary mb-3">Добавить карточку</a>
+
+{# Bootstrap-сетка: 1 колонка на мобильных, 2 на средних, 3 на больших экранах #}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for card in cards %}
+        <div class="col">
+            <div class="card h-100">
+                {# Изображение карточки (если загружено) #}
+                {% if card.image %}
+                    <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.term }}">
+                {% endif %}
+                
+                {# Содержимое карточки #}
+                <div class="card-body">
+                    <h5 class="card-title">{{ card.term }}</h5>
+                    <p class="card-text">{{ card.definition }}</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        {# Сообщение, если карточек ещё нет #}
+        <p>Карточек пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

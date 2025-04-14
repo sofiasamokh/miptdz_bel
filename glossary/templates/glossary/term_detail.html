@@ -1,0 +1,18 @@
+{# Шаблон отображения одного термина в словаре #}
+{% extends 'base.html' %}
+
+{% block content %}
+  {# Название термина #}
+  <h2>{{ term.name }}</h2>
+
+  {# Описание термина #}
+  <p>{{ term.description }}</p>
+
+  {# Изображение термина (если загружено) #}
+  {% if term.image %}
+    <div class="mt-3">
+      <img src="{{ term.image.url }}" alt="{{ term.name }}"
+           style="max-width: 400px;" class="img-fluid rounded shadow-sm">
+    </div>
+  {% endif %}
+{% endblock %}
